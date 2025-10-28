@@ -2,9 +2,7 @@
 
 The system consists of three main components:
 
-1. **Frontend Interface** – Allows users to input daily health data such as walking distance, water intake, and sleep hours.
-2. **Backend Logic** – Processes and stores the data, calculates weekly summaries, and generates simple statistics.
-3. **Local Storage / Database** – Keeps all user data private and accessible for visualization.
-
-Below is a simple architecture diagram:
+1. **Frontend:** User interface built with HTML, CSS, and JavaScript.
+2. **Backend:** A simple API server that handles requests.
+3. **Database:** Stores user data such as activity logs and summaries.
 
