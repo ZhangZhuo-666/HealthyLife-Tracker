@@ -17,12 +17,3 @@ The system consists of four main components:
 
 ---
 
-### System Flow Diagram
-
-```mermaid
-flowchart LR
-    A[User Interface (Frontend)] --> B[Application Logic (Backend)]
-    B --> C[Database (User Data, Activity Logs)]
-    C --> D[Data Analysis & Reports]
-    A --> E[User Authentication]
-    E --> B
