@@ -1,32 +1,28 @@
 # System Architecture
 
-The HealthyLife Tracker system is designed with a **three-layer architecture** to ensure scalability and simplicity.
+The system consists of four main components:
 
-### 1. **Frontend**
-- Developed using **HTML**, **CSS**, and **JavaScript**.
-- Provides interactive pages for user registration, login, activity logging, and progress visualization.
-- Sends requests to the backend through RESTful APIs.
+1. **Frontend:**  
+   Provides the user interface built with HTML, CSS, and JavaScript.  
+   It allows users to record their daily activities, view statistics, and receive reminders.
 
-### 2. **Backend**
-- Implemented as a lightweight **API server** using Python (Flask) or Node.js (Express).
-- Handles user authentication, request validation, and data processing.
-- Communicates between frontend and database.
+2. **Backend:**  
+   A lightweight API server that handles user requests, manages data flow, and performs basic logic processing.
 
-### 3. **Database**
-- Stores user information, health records, and daily activity logs.
-- Designed using **SQLite** or **MongoDB** for easy local development.
+3. **Database:**  
+   Stores user data such as activity logs, daily goals, and health summaries.
+
+4. **Data Analysis & Reports:**  
+   Analyzes user data and generates visual summaries to help users track progress and maintain motivation.
 
 ---
 
-###  Data Flow Diagram
-
-Below is the simplified workflow diagram showing how components interact:
+### System Flow Diagram
 
 ```mermaid
-flowchart TD
-    A[User Interface<br>(Frontend)] --> B[API Gateway<br>(Backend Server)]
-    B --> C[Authentication Service]
-    B --> D[Data Processing Module]
-    D --> E[Database<br>(User Data, Logs, Statistics)]
+flowchart LR
+    A[User Interface (Frontend)] --> B[Application Logic (Backend)]
+    B --> C[Database (User Data, Activity Logs)]
+    C --> D[Data Analysis & Reports]
+    A --> E[User Authentication]
     E --> B
-    B --> A
