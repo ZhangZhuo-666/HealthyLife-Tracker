@@ -12,7 +12,7 @@ def home():
 
 @app.post("/add")
 def add_record():
-    data = request.json  # 从客户端获取 JSON 数据
+    data = request.json
 
     record = HealthRecord(
         date=data["date"],
@@ -22,13 +22,8 @@ def add_record():
         sleep_hours=data["sleep_hours"]
     )
 
-    # 读取现有数据
     records = load_data()
-
-    # 将新数据转换为字典并追加
     records.append(record.__dict__)
-
-    # 保存数据
     save_data(records)
 
     return jsonify({"status": "success", "message": "Record added!"})
@@ -38,6 +33,26 @@ def add_record():
 def get_records():
     records = load_data()
     return jsonify(records)
+
+
+@app.get("/weekly-summary")
+def weekly_summary():
+    records = load_data()
+
+    if not records:
+        return jsonify({"message": "No records found"})
+
+    total_activity = sum(r["duration"] for r in records)
+    total_water = sum(r["water_intake"] for r in records)
+    avg_sleep = sum(r["sleep_hours"] for r in records) / len(records)
+
+    summary = {
+        "total_activity_minutes": total_activity,
+        "total_water_ml": total_water,
+        "average_sleep_hours": round(avg_sleep, 2),
+    }
+
+    return jsonify(summary)
 
 
 if __name__ == "__main__":
