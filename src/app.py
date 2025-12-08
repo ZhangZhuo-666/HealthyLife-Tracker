@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
-from models import HealthRecord
-from storage import load_data, save_data
+from src.models import HealthRecord
+from src.storage import load_data, save_data
 
 app = Flask(__name__)
 
