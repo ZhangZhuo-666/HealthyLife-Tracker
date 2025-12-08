@@ -1,5 +1,9 @@
-import sys, os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+import sys
+import os
+
+# Ensure project root is in Python path
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, PROJECT_ROOT)
 
 from src.app import app
 
@@ -22,9 +26,11 @@ def test_add_and_get_records():
         "sleep_hours": 7
     }
 
+    # Add a record
     res_add = client.post("/add", json=sample)
     assert res_add.status_code == 200
 
+    # Retrieve records
     res_get = client.get("/records")
     assert res_get.status_code == 200
     assert isinstance(res_get.json, list)
