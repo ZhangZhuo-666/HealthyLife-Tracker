@@ -34,5 +34,11 @@ def add_record():
     return jsonify({"status": "success", "message": "Record added!"})
 
 
+@app.get("/records")
+def get_records():
+    records = load_data()
+    return jsonify(records)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
