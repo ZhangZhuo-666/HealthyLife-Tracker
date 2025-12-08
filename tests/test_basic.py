@@ -1,11 +1,4 @@
-import sys
-import os
-
-# Add project root to Python path (works in CI and Windows)
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.insert(0, PROJECT_ROOT)
-
-from src.app import app
+from app import app
 
 
 def test_home():
@@ -26,9 +19,11 @@ def test_add_and_get_records():
         "sleep_hours": 7
     }
 
+    # Add
     res_add = client.post("/add", json=sample)
     assert res_add.status_code == 200
 
+    # Get
     res_get = client.get("/records")
     assert res_get.status_code == 200
     assert isinstance(res_get.json, list)
