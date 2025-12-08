@@ -1,3 +1,6 @@
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from src.app import app
 
 
@@ -19,11 +22,9 @@ def test_add_and_get_records():
         "sleep_hours": 7
     }
 
-    # 添加一条记录（集成测试的一部分）
     res_add = client.post("/add", json=sample)
     assert res_add.status_code == 200
 
-    # 获取所有记录
     res_get = client.get("/records")
     assert res_get.status_code == 200
     assert isinstance(res_get.json, list)
